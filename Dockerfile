@@ -6,9 +6,10 @@
 #
 
 # Build
-FROM ubuntu:16.04 as builder
+FROM ubuntu:20.04 as builder
 
 RUN apt-get update \
+  && apt-get upgrade -y \
   && apt-get install -y \
     build-essential \
     libssl-dev \
@@ -22,9 +23,10 @@ COPY . /app/
 RUN cd /app/ && ./build.sh
 
 # App
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 
 RUN apt-get update \
+  && apt-get upgrade -y \
   && apt-get install -y \
     libcurl3 \
     libjansson4 \
